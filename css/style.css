@@ -1,0 +1,255 @@
+*{
+    font-family: "Segoe UI", sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px 0 24px;
+}
+
+header{
+    height: 112px;
+    background: rgba(103, 37, 168, 1);
+}
+
+main{
+    height: 1000px;
+}
+
+footer{
+    height: 88px;
+    background: rgba(103, 37, 168, 1);
+}
+
+.header__content{
+    height: 88px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /*padding-left: 24px;*/
+    /*padding-right: 10px;*/
+}
+
+.header__rounding{
+    height: 24px;
+    border-radius: 24px 24px 0 0;
+    background: rgba(255, 255, 255, 1);
+}
+
+.footer__rounding{
+    height: 24px;
+    border-radius: 0 0 24px 24px;
+    background: rgba(255, 255, 255, 1);
+}
+
+.header__burger{
+    display: flex;
+    align-items: center;
+}
+
+
+.burger--border{
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 8px;
+    height: 46px;
+    width: 46px;
+    background: rgba(103, 37, 168, 1);
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+.header__logo a{
+    /*width: 106px;*/
+    padding-top: 1px;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    /*margin-left: 16px;*/
+;}
+
+.header__search input{
+    background: rgba(255, 255, 255, 0.2);
+    width: 66.4286vw;
+    max-width: 930px;
+    height: 48px;
+    border-radius: 36px;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.header__search input::placeholder{
+    position: relative;
+    bottom: 2px;
+    right: 1px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.header__search input::placeholder{
+    background-image: url('/img/Search.svg');
+    background-repeat: no-repeat;
+    background-position: right 2px top 4px;
+    opacity: 0.5;
+}
+
+.header__icons{
+    display: flex;
+    flex-direction: row;
+}
+
+.header__icons span {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    color: rgba(255, 255, 255, 1);
+    display: block;
+    margin-top: 10px;
+}
+
+.icons__profile{
+    margin-right: 42px;
+}
+
+.icons__basket{
+
+}
+
+.icons__profile,
+.icons__basket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.basket-content{
+
+}
+
+.item-count {
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -20px; /* Отрицательный отступ сверху для позиционирования счетчика над иконкой */
+    right: 3px;
+}
+
+.icons__basket span:nth-child(4){
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0;
+    text-align: center;
+    padding: 1px 5px;
+}
+
+.count-background{
+    background-color: rgba(245, 81, 35, 1);
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -7px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+}
+
+.header--mobile{
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .container{
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 24px 0px 24px;
+    }
+
+    .header__search input{
+        width: 53.625vw;
+        max-width: 564px;
+
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .header__search input{
+        width: 43.625vw;
+        max-width: 436px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .header{
+        height: 80px;
+    }
+
+    .container{
+        padding: 0 16px 0 16px;
+    }
+
+    .header__search input{
+        display: none;
+    }
+
+    .header__icons{
+        display: none;
+    }
+
+    .header__burger{
+        display: none;
+    }
+
+    .header--mobile{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        height: 56px;
+        padding-top: 1px;
+    }
+
+    .header__content{
+        display: none;
+    }
+
+    .header__rounding{
+        height: 26px;
+    }
+    .header--mobile span{
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: 0.11em;
+        text-align: center;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 1);
+        position: relative;
+        left: 1px;
+        bottom: 4px;
+    }
+}

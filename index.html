@@ -6,20 +6,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap">
 </head>
 <body>
   <script src="js/main.js"></script>
-  <header>
-    <div class="header__content">
+  <header class="header">
+    <div class="container">
+      <div class="header__content">
+        <div class="header__burger">
+          <div class="burger--border">
+            <svg style="padding: 11px 9px" width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 2C0 0.895431 0.895431 0 2 0H26C27.1046 0 28 0.895431 28 2C28 3.10457 27.1046 4 26 4H2C0.895431 4 0 3.10457 0 2Z" fill="white"/>
+              <path d="M0 12C0 10.8954 0.895431 10 2 10H26C27.1046 10 28 10.8954 28 12C28 13.1046 27.1046 14 26 14H2C0.895431 14 0 13.1046 0 12Z" fill="white"/>
+              <path d="M0 22C0 20.8954 0.895431 20 2 20H26C27.1046 20 28 20.8954 28 22C28 23.1046 27.1046 24 26 24H2C0.895431 24 0 23.1046 0 22Z" fill="white"/>
+            </svg>
+          </div>
+
+          <div class="header__logo">
+            <a href="#">Товары<br> и точка</a>
+          </div>
+        </div>
+
+        <div class="header__search">
+          <label for="search" >
+            <input type="text" placeholder="Я ищу..." id="search">
+          </label>
+        </div>
+        <div class="header__icons">
+          <div class="icons__profile">
+            <img src="./img/Exclude.svg" alt="">
+            <span class="header__icons--span">Профиль</span>
+          </div>
+          <div class="icons__basket">
+              <img src="./img/Basket.svg" alt="">
+              <span class="header__icons--span">Корзина</span>
+              <div class="count-background"></div>
+              <span class="item-count">3</span>
+          </div>
+        </div>
+      </div>
+      <div class="header--mobile">
+        <div class="burger--mobile">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.75 2C0.75 1.30964 1.30964 0.75 2 0.75H22C22.6904 0.75 23.25 1.30964 23.25 2C23.25 2.69036 22.6904 3.25 22 3.25H2C1.30964 3.25 0.75 2.69036 0.75 2Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.75 10C0.75 9.30964 1.30964 8.75 2 8.75H22C22.6904 8.75 23.25 9.30964 23.25 10C23.25 10.6904 22.6904 11.25 22 11.25H2C1.30964 11.25 0.75 10.6904 0.75 10Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.75 18C0.75 17.3096 1.30964 16.75 2 16.75H16C16.6904 16.75 17.25 17.3096 17.25 18C17.25 18.6904 16.6904 19.25 16 19.25H2C1.30964 19.25 0.75 18.6904 0.75 18Z" fill="white"/>
+          </svg>
+        </div>
+        <span>Товары и точка</span>
+          <div class="search--button">
+            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M1.99886 8C1.99886 6.4087 2.631 4.88258 3.75622 3.75736C4.88143 2.63214 6.40756 2 7.99886 2C9.59015 2 11.1163 2.63214 12.2415 3.75736C13.3667 4.88258 13.9989 6.4087 13.9989 8C13.9989 9.5913 13.3667 11.1174 12.2415 12.2426C11.1163 13.3679 9.59015 14 7.99886 14C6.40756 14 4.88143 13.3679 3.75622 12.2426C2.631 11.1174 1.99886 9.5913 1.99886 8ZM7.99886 0C6.72572 0.000182277 5.471 0.304218 4.339 0.886839C3.20699 1.46946 2.23038 2.31384 1.49034 3.3498C0.750296 4.38577 0.268189 5.5834 0.0840862 6.84315C-0.100017 8.10291 0.0192008 9.38842 0.431832 10.5928C0.844462 11.7973 1.53859 12.8858 2.45652 13.768C3.37446 14.6502 4.48969 15.3006 5.70953 15.6651C6.92938 16.0296 8.2186 16.0977 9.47006 15.8638C10.7215 15.6298 11.8991 15.1006 12.9049 14.32L18.4339 19.85C18.6215 20.0375 18.8759 20.1428 19.1412 20.1427C19.4065 20.1426 19.6608 20.0371 19.8484 19.8495C20.0359 19.6619 20.1412 19.4074 20.1411 19.1421C20.141 18.8769 20.0355 18.6225 19.8479 18.435L14.3179 12.905C15.2356 11.7225 15.8032 10.3063 15.9561 8.81726C16.109 7.32825 15.8411 5.82621 15.1829 4.48188C14.5246 3.13754 13.5024 2.00485 12.2324 1.21256C10.9625 0.420272 9.4957 0.000166004 7.99886 0Z" fill="white"/>
+            </svg>
+          </div>
+      </div>
     </div>
-    <div class="header__rounding">
+      <div class="header__rounding">
+      </div>
     </div>
   </header>
   <main>
-
+    <div class="container">
+    </div>
   </main>
   <footer>
-
+    <div class="footer__rounding">
+    </div>
+    <div class="footer__content">
+    </div>
   </footer>
 </body>
 </html>
