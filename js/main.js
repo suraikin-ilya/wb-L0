@@ -71,7 +71,7 @@ function renderProducts() {
                     <div class="buttons__quantity">
                         <span class="reduce_amount">−</span>
                         <span class="amount">${product.currentAmount}</span>
-                        <span class="increase_amount">+</span>
+                        <span class="increase_amount ${product.currentAmount === product.totalAmount ? 'max-amount' : ''}">+</span>
                     </div>
                     <div class="buttons__left">
                         <span>Осталось 2 шт.</span>
@@ -89,39 +89,56 @@ function renderProducts() {
                 </div>
             </div>
         `;
-        productList.appendChild(card);
-    });
-}
 
-function initEventHandlers() {
-    document.addEventListener('click', (event) => {
-        const target = event.target;
-        const productId = parseInt(target.closest('.product__card').id);
-        const product = products.find(item => item.id === productId);
+        const reduceButton = card.querySelector('.reduce_amount');
+        const increaseButton = card.querySelector('.increase_amount');
 
-        if (target.classList.contains('reduce_amount')) {
-            if (product.currentAmount > 1) {
-                product.currentAmount--;
-                updateProductAmount(productId, product.currentAmount);
-            }
-        }
-
-        if (target.classList.contains('increase_amount')) {
+        // Добавляем обработчики событий к кнопкам увеличения
+        increaseButton.addEventListener('click', () => {
             if (product.currentAmount < product.totalAmount) {
                 product.currentAmount++;
-                updateProductAmount(productId, product.currentAmount);
+                updateProductAmount(product.id, product.currentAmount);
             }
-        }
+        });
+
+        // Добавляем обработчики событий к кнопкам уменьшения
+        reduceButton.addEventListener('click', () => {
+            if (product.currentAmount > 1) {
+                product.currentAmount--;
+                updateProductAmount(product.id, product.currentAmount);
+            }
+        });
+
+        productList.appendChild(card);
+
+        updateProductAmount(product.id, product.currentAmount);
     });
+
 }
+
 
 function updateProductAmount(productId, newAmount) {
     const card = document.getElementById(productId);
     if (card) {
         card.querySelector('.amount').textContent = newAmount;
+
+        const reduceButton = card.querySelector('.reduce_amount');
+        const increaseButton = card.querySelector('.increase_amount');
+
+        // Обновляем классы кнопок увеличения и уменьшения в зависимости от значения newAmount
+        if (newAmount === 1) {
+            reduceButton.classList.add('max-amount');
+        } else {
+            reduceButton.classList.remove('max-amount');
+        }
+
+        if (newAmount === products.find(item => item.id === productId).totalAmount) {
+            increaseButton.classList.add('max-amount');
+        } else {
+            increaseButton.classList.remove('max-amount');
+        }
     }
 }
-
 
 // Вызываем функцию отображения товаров при загрузке страницы
 window.onload = function() {

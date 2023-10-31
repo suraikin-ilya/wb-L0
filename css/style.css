@@ -635,7 +635,9 @@ h1{
     text-align: center;
 }
 
-.reduce_amount, #increase_amount{
+
+
+.reduce_amount, .increase_amount{
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
@@ -643,6 +645,12 @@ h1{
     text-align: center;
     color: rgba(0, 0, 0, 1);
     cursor: pointer;
+}
+
+.max-amount {
+    color: rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .amount{
