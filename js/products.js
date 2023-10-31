@@ -34,6 +34,17 @@ const products = [
         seller: 'OOO Вайлдберриз',
         currentAmount: 2,
         totalAmount: 2
+    },
+    {
+        id: 4,
+        image: './img/pencil.jpg',
+        name: 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные,&nbsp;Faber-Castell',
+        price: 475,
+        priceWithSale: 247,
+        store: 'Коледино WB',
+        seller: 'OOO Вайлдберриз',
+        currentAmount: 2,
+        totalAmount: 2
     }
 ];
 
