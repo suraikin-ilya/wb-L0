@@ -370,7 +370,7 @@ footer{
 .checkbox:checked+label::before {
     border-color: rgba(203, 17, 171, 1);
     background-color: rgba(203, 17, 171, 1);
-    background-image: url('img/checked.svg');
+    background-image: url("/img/checked.svg");
 }
 
 .payment__checkbox .checkbox+label::before{
@@ -617,13 +617,22 @@ h1{
 .reduce_amount{
     position: relative;
     right: 1px;
-
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: center;
 }
 
 .increase_amount{
     position: relative;
     left: 4px;
-    /*bottom: 1px;*/
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: center;
 }
 
 .reduce_amount, #increase_amount{
@@ -691,6 +700,10 @@ h1{
     gap: 19px;
     flex-direction: row-reverse;
     align-items: start;
+}
+
+.button_delete, .button_favorite{
+    cursor: pointer;
 }
 
 .button_delete{

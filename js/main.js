@@ -1,36 +1,4 @@
-const products = [
-    {
-        id: 1,
-        image: './img/t-short.jpg',
-        name: 'Футболка UZcotton мужская',
-        price: 1051,
-        priceWithSale: 522,
-        color: 'Белый',
-        size: '56',
-        store: 'Коледино WB',
-        seller: 'OOO Вайлдберриз'
-    },
-    {
-        id: 2,
-        image: './img/card-holder.jpg',
-        name: 'Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe',
-        price: 11500,
-        priceWithSale: 10500,
-        color: 'прозрачный',
-        store: 'Коледино WB',
-        seller: 'OOO Мегапрофстиль'
-    },
-    {
-        id: 3,
-        image: './img/pencil.jpg',
-        name: 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные,&nbsp;Faber-Castell',
-        price: 475,
-        priceWithSale: 247,
-        store: 'Коледино WB',
-        seller: 'OOO Вайлдберриз'
-    }
-];
-
+import products from './products';
 function renderProducts() {
     const productList = document.querySelector('.products__list');
 
@@ -46,7 +14,7 @@ function renderProducts() {
             <div class="card__description">
                 <div class="description__image">
                     <div class="card_description--checkbox">
-                        <input type="checkbox" id="${checkBoxId}" class="checkbox">
+                        <input type="checkbox" id="${checkBoxId}" class="checkbox" checked>
                         <label for="${checkBoxId}"></label>
                     </div>
                     <img class="card__photo" src="${product.image}" alt="">
@@ -65,7 +33,7 @@ function renderProducts() {
                 <div class="actions__buttons">
                     <div class="buttons__quantity">
                         <span class="reduce_amount">−</span>
-                        <span class="amount">1</span>
+                        <span class="amount">${product.currentAmount}</span>
                         <span class="increase_amount">+</span>
                     </div>
                     <div class="buttons__left">
@@ -84,9 +52,9 @@ function renderProducts() {
                 </div>
             </div>
         `;
+
         productList.appendChild(card);
     });
 }
-
 // Вызываем функцию отображения товаров при загрузке страницы
 window.onload = renderProducts;
