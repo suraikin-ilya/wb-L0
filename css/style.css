@@ -500,8 +500,9 @@ h1{
 
 .description__image{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-right: 17px;
+    height: max-content;
 }
 
 .product__card{
@@ -511,6 +512,7 @@ h1{
 .card_description--checkbox{
     position: relative;
     top: 1px;
+    align-self: center;
 }
 
 .card__photo{
@@ -539,9 +541,16 @@ h1{
     letter-spacing: 0px;
     text-align: left;
     margin-bottom: 7px;
+    max-width: 275px;
+
 }
 
-.description__text__color{
+.description__color__size{
+    display: flex;
+    gap: 17px;
+}
+
+.description__color , .description__size{
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;
@@ -550,9 +559,6 @@ h1{
     margin-bottom: 8px;
 }
 
-.description--color{
-    margin-right: 13px;
-}
 
 .description__store, .description__seller{
     font-size: 13px;
