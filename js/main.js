@@ -1,11 +1,48 @@
-import products from './products';
+const products = [
+    {
+        id: 1,
+        image: './img/t-short.jpg',
+        name: 'Футболка UZcotton мужская',
+        price: 1051,
+        priceWithSale: 522,
+        color: 'Белый',
+        size: '56',
+        store: 'Коледино WB',
+        seller: 'OOO Вайлдберриз',
+        currentAmount: 1,
+        totalAmount: 2
+    },
+    {
+        id: 2,
+        image: './img/card-holder.jpg',
+        name: 'Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe',
+        price: 11500,
+        priceWithSale: 10500,
+        color: 'прозрачный',
+        store: 'Коледино WB',
+        seller: 'OOO Мегапрофстиль',
+        currentAmount: 200,
+        totalAmount: 999
+    },
+    {
+        id: 3,
+        image: './img/pencil.jpg',
+        name: 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные,&nbsp;Faber-Castell',
+        price: 475,
+        priceWithSale: 247,
+        store: 'Коледино WB',
+        seller: 'OOO Вайлдберриз',
+        currentAmount: 2,
+        totalAmount: 2
+    }
+];
 function renderProducts() {
     const productList = document.querySelector('.products__list');
-
     // Проходим по каждому товару и создаем карточку с изображением
     products.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product__card';
+        card.id = product.id;
         const checkBoxId = `checkbox-${product.id}`;
         const size = product.size ? `<span class="description__size">Размер: ${product.size}</span>` : '';
         const color = product.color ? `<span class="description__color">Цвет: ${product.color}</span>` : '';
@@ -52,9 +89,42 @@ function renderProducts() {
                 </div>
             </div>
         `;
-
         productList.appendChild(card);
     });
 }
+
+function initEventHandlers() {
+    document.addEventListener('click', (event) => {
+        const target = event.target;
+        const productId = parseInt(target.closest('.product__card').id);
+        const product = products.find(item => item.id === productId);
+
+        if (target.classList.contains('reduce_amount')) {
+            if (product.currentAmount > 1) {
+                product.currentAmount--;
+                updateProductAmount(productId, product.currentAmount);
+            }
+        }
+
+        if (target.classList.contains('increase_amount')) {
+            if (product.currentAmount < product.totalAmount) {
+                product.currentAmount++;
+                updateProductAmount(productId, product.currentAmount);
+            }
+        }
+    });
+}
+
+function updateProductAmount(productId, newAmount) {
+    const card = document.getElementById(productId);
+    if (card) {
+        card.querySelector('.amount').textContent = newAmount;
+    }
+}
+
+
 // Вызываем функцию отображения товаров при загрузке страницы
-window.onload = renderProducts;
+window.onload = function() {
+    renderProducts();
+    initEventHandlers();
+};
