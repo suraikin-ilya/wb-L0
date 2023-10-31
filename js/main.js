@@ -1,5 +1,6 @@
 const products = [
     {   id: 1,
+        image: './img/t-shirt.jpg',
         name: 'Футболка UZcotton мужская',
         price: 1051,
         price_with_sale: 522,
@@ -8,6 +9,7 @@ const products = [
         store: 'Коледино WB',
         seller: 'OOO Вайлдберриз'},
     {   id: 2,
+        image: './img/t-shirt.jpg',
         name: 'Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe',
         price: 11500,
         price_with_sale: 10500,
@@ -16,6 +18,7 @@ const products = [
         store: 'Коледино WB',
         seller: 'OOO Мегапрофстиль'},
     {   id: 3,
+        image: './img/pencil.jpg',
         name: 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell ',
         price: 475,
         price_with_sale: 247,
