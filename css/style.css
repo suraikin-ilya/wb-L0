@@ -747,6 +747,10 @@ h1{
     margin-bottom: 36px;
 }
 
+.absent{
+    margin-bottom: 40px;
+}
+
 .absent__content{
     border-top: 1px solid rgba(0, 0, 0, 0.1)
 }
@@ -813,7 +817,7 @@ h1{
 
 .absent__card:nth-child(3){
     position: relative;
-    bottom: 8px;
+    bottom: 7px;
 }
 
 .absent__card .card__actions{
@@ -823,6 +827,155 @@ h1{
 .absent__card .buttons{
     margin-top: 0;
 }
+
+.delivery{
+    height: min-content;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    padding: 8px 24px 25px 24px;
+}
+
+.delivery-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.property__span{
+    min-width: 153px;
+}
+
+.property{
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.delivery__properties{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-bottom: 15px;
+}
+
+.address-test{
+    display: block;
+}
+
+.basket h2{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: rgba(0, 0, 0, 1);
+}
+
+.change-button{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: right;
+    color: rgba(203, 17, 171, 1);
+    padding-top: 8px;
+    cursor: pointer;
+}
+
+.property__span {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+.property-value{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+.point-value img{
+    display: inline-block;
+}
+
+.address{
+    display: block;
+}
+
+.rating{
+    margin-right: 4px;
+}
+
+.rating, .time{
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0;
+    text-align: left;
+
+}
+
+.delivery__products{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.delivery__products img{
+    width: 40px;
+    height: 56px;
+    border-radius: 8px;
+}
+
+.date-first img:nth-last-child(1){
+    margin-right: 0px;
+}
+
+.image-wrapper {
+    position: relative; /* Позиционируем обертку относительно своего родителя */
+    display: inline-block; /* Делаем обертку блочным элементом, чтобы она занимала только необходимое пространство вокруг изображения */
+}
+
+
+.badge {
+    position: absolute; /* Позиционируем число абсолютно внутри обертки */
+    top: -8px; /* Отступ от верхнего края обертки */
+    right: -5px; /* Отступ от правого края обертки */
+    background-color: rgba(245, 81, 35, 1); /* Цвет фона числа */
+    color: #fff;
+    border-radius: 16px; /* Закругленные углы для круглой формы */
+    padding: 0px 5px 0px 5px;
+    /*max-height: 6px;*/
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0;
+    text-align: center;
+
+}
+
+.property:nth-last-child(1){
+    position: relative;
+    bottom: 4px;
+}
+
+.delivery__reverse{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.free{
+    /*margin-left: 1px;*/
+}
+
 @media screen and (max-width: 1300px){
     .adaptive{
         gap: 2vw;
