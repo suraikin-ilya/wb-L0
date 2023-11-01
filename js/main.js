@@ -10,7 +10,8 @@ const products = [
         store: 'Коледино WB',
         seller: 'OOO Вайлдберриз',
         currentAmount: 1,
-        totalAmount: 2
+        totalAmount: 2,
+        remain: 2
     },
     {
         id: 2,
@@ -33,7 +34,8 @@ const products = [
         store: 'Коледино WB',
         seller: 'OOO Вайлдберриз',
         currentAmount: 2,
-        totalAmount: 2
+        totalAmount: 2,
+        remain: 2
     }
 ];
 function renderProducts() {
@@ -44,6 +46,7 @@ function renderProducts() {
         card.className = 'product__card';
         card.id = product.id;
         const checkBoxId = `checkbox-${product.id}`;
+        const remain = product.remain ? `<div class="buttons__left"><span>Осталось ${product.remain} шт.</span></div>` : '';
         const size = product.size ? `<span class="description__size">Размер: ${product.size}</span>` : '';
         const color = product.color ? `<span class="description__color">Цвет: ${product.color}</span>` : '';
         const colorSizeMarkup = size || color ? `<div class="description__color__size">${color}${size}</div>` : '';
@@ -73,9 +76,7 @@ function renderProducts() {
                         <span class="amount">${product.currentAmount}</span>
                         <span class="increase_amount ${product.currentAmount === product.totalAmount ? 'max-amount' : ''}">+</span>
                     </div>
-                    <div class="buttons__left">
-                        <span>Осталось 2 шт.</span>
-                    </div>
+                    ${remain}
                     <div class="buttons">
                         <img class="button_delete" src="./img/delete.svg" alt="">
                         <img class="button_favorite" src="./img/favorites.svg" alt="">
@@ -140,8 +141,43 @@ function updateProductAmount(productId, newAmount) {
     }
 }
 
+function renderAbsent() {
+    const productList = document.querySelector('.absent__list');
+    // Проходим по каждому товару и создаем карточку с изображением
+    products.forEach(product => {
+        const absentCard = document.createElement('div');
+        absentCard.className = 'absent__card';
+        absentCard.id = product.id;
+        const size = product.size ? `<span class="description__size">Размер: ${product.size}</span>` : '';
+        const color = product.color ? `<span class="description__color">Цвет: ${product.color}</span>` : '';
+        const colorSizeMarkup = size || color ? `<div class="description__color__size">${color}${size}</div>` : '';
+        absentCard.innerHTML = `
+            <div class="card__description">
+                <div class="description__image">
+                    <img class="card__photo" src="${product.image}" alt="">
+                </div>
+                <div class="description__text">
+                    <span class="description__name">${product.name}</span>
+                    ${colorSizeMarkup}
+                </div>
+            </div>
+            <div class="card__actions">
+                <div class="actions__buttons">
+                    <div class="buttons">
+                        <img class="button_delete" src="./img/delete.svg" alt="">
+                        <img class="button_favorite" src="./img/favorites.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        `;
+
+        productList.appendChild(absentCard);
+    });
+
+}
+
 // Вызываем функцию отображения товаров при загрузке страницы
 window.onload = function() {
     renderProducts();
-    initEventHandlers();
+    renderAbsent();
 };

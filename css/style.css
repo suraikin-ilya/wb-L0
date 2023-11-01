@@ -21,7 +21,7 @@ header{
 }
 
 main{
-    height: 1000px;
+    height: min-content;
     background: rgba(246, 246, 250, 1)
 }
 
@@ -371,6 +371,7 @@ footer{
     border-color: rgba(203, 17, 171, 1);
     background-color: rgba(203, 17, 171, 1);
     background-image: url("/img/checked.svg");
+    background-size: 12px;
 }
 
 .payment__checkbox .checkbox+label::before{
@@ -661,8 +662,8 @@ h1{
     text-align: center;
 }
 
-.buttons__left{
-    margin-bottom: 9px;
+.buttons{
+    margin-top: 9px;
 }
 
 .buttons__left span{
@@ -742,6 +743,86 @@ h1{
     gap: 20px;
 }
 
+.stock{
+    margin-bottom: 36px;
+}
+
+.absent__content{
+    border-top: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.absent__header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 17px;
+}
+
+.absent__header--span span{
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+
+}
+
+#dropAbsent{
+    position: relative;
+    top: 1px;
+    right: 2px;
+}
+
+.absent__card .description__name{
+    max-width: 309px;
+}
+
+.absent__card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.absent__card span{
+    color: rgba(151, 151, 175, 1);
+}
+
+.absent__card:nth-last-child(0){
+    position: relative;
+    bottom: 100px;
+}
+
+.absent__list:nth-child(1){
+    margin-top: 12px;
+}
+
+.absent__list{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.absent__card .card__photo{
+    filter: grayscale(100%);
+}
+
+.absent__list .description__text{
+    align-self: flex-start;
+}
+
+.absent__card:nth-child(3){
+    position: relative;
+    bottom: 8px;
+}
+
+.absent__card .card__actions{
+    width: 182px;
+}
+
+.absent__card .buttons{
+    margin-top: 0;
+}
 @media screen and (max-width: 1300px){
     .adaptive{
         gap: 2vw;
