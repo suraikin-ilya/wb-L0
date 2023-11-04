@@ -5,7 +5,7 @@ const products = [
         name: 'Футболка UZcotton мужская',
         price: 1051,
         priceWithSale: 522,
-        color: 'Белый',
+        color: 'белый',
         size: '56',
         store: 'Коледино WB',
         seller: 'OOO Вайлдберриз',
@@ -46,20 +46,28 @@ function renderProducts() {
         card.className = 'product__card';
         card.id = product.id;
         const checkBoxId = `checkbox-${product.id}`;
+        const size_mobile = product.size ? `<span class="size-mobile">${product.size}</span>` : "";
         const remain = product.remain ? `<div class="buttons__left"><span>Осталось ${product.remain} шт.</span></div>` : '';
         const size = product.size ? `<span class="description__size">Размер: ${product.size}</span>` : '';
         const color = product.color ? `<span class="description__color">Цвет: ${product.color}</span>` : '';
         const colorSizeMarkup = size || color ? `<div class="description__color__size">${color}${size}</div>` : '';
         card.innerHTML = `
             <div class="card__description">
-                <div class="description__image">
-                    <div class="card_description--checkbox">
+                <div class="description__image description__image-mobile">
+                    <div class="card_description--checkbox checkbox-mobile">
                         <input type="checkbox" id="${checkBoxId}" class="checkbox" checked>
                         <label for="${checkBoxId}"></label>
                     </div>
+                    ${size_mobile}
                     <img class="card__photo" src="${product.image}" alt="">
                 </div>
                 <div class="description__text">
+                    <div class="actions__price actions__price-mobile">
+                        <div class="price__actual">
+                            <h3>${product.priceWithSale}</h3><h4> сом</h4>
+                        </div>
+                        <span class="price__sale">${product.price} сом</span>
+                     </div>
                     <span class="description__name">${product.name}</span>
                     ${colorSizeMarkup}
                     <span class="description__store">${product.store}</span>
@@ -90,7 +98,6 @@ function renderProducts() {
                 </div>
             </div>
         `;
-
         const reduceButton = card.querySelector('.reduce_amount');
         const increaseButton = card.querySelector('.increase_amount');
 
@@ -148,12 +155,14 @@ function renderAbsent() {
         const absentCard = document.createElement('div');
         absentCard.className = 'absent__card';
         absentCard.id = product.id;
+        const size_mobile = product.size ? `<span class="size-mobile">${product.size}</span>` : "";
         const size = product.size ? `<span class="description__size">Размер: ${product.size}</span>` : '';
         const color = product.color ? `<span class="description__color">Цвет: ${product.color}</span>` : '';
         const colorSizeMarkup = size || color ? `<div class="description__color__size">${color}${size}</div>` : '';
         absentCard.innerHTML = `
             <div class="card__description">
-                <div class="description__image">
+                <div class="description__image description__image-mobile">
+                    ${size_mobile}
                     <img class="card__photo" src="${product.image}" alt="">
                 </div>
                 <div class="description__text">

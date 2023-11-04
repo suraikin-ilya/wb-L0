@@ -1107,17 +1107,30 @@ h1{
     /*left: 1px;*/
 }
 
+.actions__price-mobile{
+    display: none;
+}
+
+.size-mobile{
+    display: none;
+}
+
 @media screen and (max-width: 1300px){
-    .adaptive{
-        gap: 2vw;
+    .basket{
+
     }
 }
 
 @media screen and (max-width: 1200px) {
+
     .container{
         max-width: 1024px;
         margin: 0 auto;
         padding: 0 24px 0px 24px;
+    }
+
+    .total{
+        max-width: 255px;
     }
 
     .header__search input{
@@ -1176,6 +1189,26 @@ h1{
         height: 80px;
     }
 
+    .adaptive {
+        grid-template-columns: 1fr;
+        max-width: 900px;
+        width: 100%;
+        padding: 0;
+    }
+
+    .basket, .total{
+        max-width: calc(100vw - 32px);
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .total{
+        padding: 0 16px;
+        background: rgba(246, 246, 250, 1);
+        border: none;
+        box-shadow: none;
+    }
+
     .container{
         padding: 0 16px 0 16px;
     }
@@ -1220,5 +1253,371 @@ h1{
         position: relative;
         left: 1px;
         bottom: 4px;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .recipient__form, .form__details, .form__full-name{
+        flex-direction: column;
+    }
+    .property {
+        flex-direction: column;
+    }
+    .stock__products{
+        border-top: none;
+    }
+    .description__size{
+        display: none;
+    }
+    .checkbox-mobile{
+        position: absolute;
+        top: 3px;
+        left: 4px;
+        z-index: 2;
+    }
+    .description__image-mobile{
+        position: relative;
+    }
+    .product__card{
+        flex-direction: column;
+    }
+    .products__list{
+        gap: 11px;
+    }
+
+    .description__name{
+        max-height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .actions__price{
+        display: none;
+    }
+    .card__actions{
+        width: 100%;
+    }
+    .actions__buttons{
+        margin-top: 12px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 12px;
+    }
+    .buttons__quantity{
+        padding-left: 8px;
+        border-radius: 8px;
+        height: 4px;
+        width: 62px;
+        padding-top: 12px;
+    }
+    .increase_amount, .reduce_amount{
+        position: relative;
+        bottom: 2px;
+    }
+    .buttons__left{
+        align-self: flex-start;
+        position: relative;
+        right: 7px;
+        top: 2px;
+    }
+    .buttons{
+        align-self: flex-start;
+        gap: 28px;
+        position: relative;
+        bottom: 2px;
+    }
+    .product__card{
+        justify-content: flex-start;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .actions__price-mobile{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .actions__price-mobile span{
+        margin-left: 3px;
+    }
+    .stock{
+        margin-bottom: 43px;
+    }
+    .absent__list{
+        gap: 17px;
+    }
+    .absent__card{
+
+        padding-top: 15px;
+        border-top: none;
+        flex-direction: column;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .absent__card .card__actions{
+        margin-top: 5px;
+        width: min-content;
+        align-self: flex-end;
+    }
+
+    .absent__card .actions__buttons{
+        padding-right: 3px;
+    }
+
+    .absent__content{
+        border-top: none
+    }
+    .description__name{
+        
+        margin-top: 0px;
+    }
+    .absent__card, .description__name{
+        position: relative;
+        left: -1px;
+        bottom: 1px;
+    }
+    .absent__card, .card__photo{
+        position: relative;
+        /*bottom: 1px;*/
+        left: 2px;
+    }
+    .basket h2{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 28px;
+        letter-spacing: -0.01em;
+        text-align: left;
+    }
+    .absent{
+        margin-bottom: 28px;
+    }
+    .delivery, .payment-method, .recipient{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .delivery{
+        margin-bottom: 9px;
+    }
+    .delivery .change-button, .payment-method .change-button{
+        position: relative;
+        bottom: 4px;
+        left: 0;
+    }
+    .delivery-header{
+        margin-bottom: 4px;
+    }
+    .delivery__products{
+        margin-top: 10px;
+        margin-bottom: 9px;
+    }
+    .delivery__properties{
+        margin-bottom: 10px;
+    }
+    .delivery__reverse{
+        padding: 0 8px;
+    }
+    .property{
+        gap: 0;
+    }
+    .payment-header{
+        margin-bottom: 6px;
+    }
+    .payment-method{
+        margin-bottom: 12px;
+        padding-bottom: 22px;
+    }
+    .form__full-name{
+        margin-bottom: 44px;
+        gap: 44px;
+    }
+    .form__full-name input, .form__details input{
+        padding-bottom: 2px;
+    }
+    .recipient{
+        padding-bottom: 20px;
+        margin-bottom: 24px;
+    }
+    .recipient__form input::placeholder{
+        position: relative;
+        right: 1px;
+    }
+    .form__details{
+        gap: 44px;
+    }
+    .form__details .input-container{
+        min-width: 100%;
+    }
+    .recipient__form{
+        margin-top: 21px;
+    }
+    .total__header span{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 28px;
+        letter-spacing: -0.01em;
+        text-align: left;
+    }
+    .recipient{
+        margin-bottom: 0;
+    }
+    .adaptive{
+        gap: 23px;
+    }
+    .basket{
+        margin-bottom: 0;
+    }
+    .total__delivery{
+        display: none;
+    }
+    .total__reverse{
+        margin-top: 16px;
+        background: rgba(240, 236, 244, 1);
+    }
+    .free-total{
+        margin-left: 2px;
+    }
+    .total__payment{
+        display: none;
+    }
+    .payment__checkbox{
+        margin-top: 14px;
+        background: rgba(240, 236, 244, 1);
+    }
+    .agreement span{
+        max-width: 267px;
+        margin-bottom: 16px;
+    }
+    .total__header span:nth-child(2){
+        letter-spacing: 0;
+    }
+
+}
+
+@media screen and (max-width: 320px){
+    .adaptive {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        width: 100%;
+        padding: 0 ;
+    }
+    .basket{
+        max-width: 320px;
+        padding: 0;
+    }
+
+    .basket h1{
+        padding: 0 16px;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 28px;
+        letter-spacing: -0.01em;
+        text-align: left;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        position: relative;
+        bottom: 9px;
+        margin-bottom: 6px;
+    }
+
+    .stock__header{
+        margin-bottom: 16px;
+    }
+
+    .stock__header img{
+        position: relative;
+        top: 1px;
+        right: 6px;
+    }
+
+    .card__photo{
+        width: 80px;
+        /*max-width: 100%;*/
+        height: auto;
+        left: 0;
+    }
+
+    .size-mobile{
+        display: block;
+        position: absolute;
+        z-index: 2;
+        left: 4px;
+        bottom: 6px;
+        background: rgba(255, 255, 255, 1);
+        padding: 0 3px 2px 3px ;
+        border-radius: 6px;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0;
+        text-align: center;
+
+    }
+
+    .actions__price-mobile{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        height: 24px;
+    }
+
+    .actions__price-mobile h3{
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 32px;
+        letter-spacing: 0;
+        text-align: right;
+        margin-right: 5px;
+    }
+
+    .actions__price-mobile h4{
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0;
+        text-align: right;
+
+    }
+
+    .actions__price-mobile .price__sale{
+        line-height: 26px;
+        margin-left: 6px;
+    }
+
+    .description__name{
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0;
+        text-align: left;
+        margin-top: 2px;
+    }
+
+    .seller{
+        display: none;
+    }
+
+    .description__color, .description__name, .description__store{
+        position: relative;
+        right: 1px;
+    }
+
+    .stock, .absent{
+        padding: 0 16px;
+    }
+    .recipient, .delivery, .payment-method{
+
+    }
+    .total{
+        max-width: calc(100vw - 32px);
+        padding: 0 16px;
+        background: rgba(246, 246, 250, 1);
+        border: none;
+        box-shadow: none;
+    }
+    .recipient__form, .form__details, .form__full-name{
+        flex-direction: column;
+    }
+    .property {
+        flex-direction: column;
     }
 }
