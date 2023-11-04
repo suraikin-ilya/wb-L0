@@ -376,7 +376,7 @@ footer{
 .checkbox:checked+label::before {
     border-color: rgba(203, 17, 171, 1);
     background-color: rgba(203, 17, 171, 1);
-    background-image: url('img/checked.svg');
+    background-image: url('data:image/svg+xml;utf8,<svg width="13" height="11" viewBox="0 0 13 11" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.7354 2.17929L4.58662 10.9839L0.257812 6.16816L1.74523 4.83115L4.60819 8.01617L11.2676 0.820801L12.7354 2.17929Z" fill="white"/></svg>');
     background-size: 12px;
 }
 
