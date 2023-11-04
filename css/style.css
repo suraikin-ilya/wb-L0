@@ -376,7 +376,7 @@ footer{
 .checkbox:checked+label::before {
     border-color: rgba(203, 17, 171, 1);
     background-color: rgba(203, 17, 171, 1);
-    background-image: url("/img/checked.svg");
+    background-image: url('/img/checked.svg');
     background-size: 12px;
 }
 
