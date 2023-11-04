@@ -1286,7 +1286,8 @@ h1{
     }
 
     .description__name{
-        max-height: 40px;
+        margin-bottom: 2px;
+        max-height: 45px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -1314,7 +1315,9 @@ h1{
     }
     .increase_amount, .reduce_amount{
         position: relative;
-        bottom: 2px;
+        padding-top: 1px;
+        padding-bottom: 5px;
+        /*bottom: 2px;*/
     }
     .buttons__left{
         align-self: flex-start;
