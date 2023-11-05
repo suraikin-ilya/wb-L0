@@ -66,6 +66,20 @@ const cards = [
     },
 
 ]
+let totalAmount = 0;
+let totalProducts = products.length;
+const itemCountElement = document.querySelector('.item-count');
+
+
+itemCountElement.textContent = totalProducts.toString();
+
+window.onload = function() {
+    renderProducts();
+    renderAbsent();
+    updateTotalAmount();
+    updateTotalPriceWithDiscount();
+    updateTotalItems();
+};
 function renderProducts() {
     const productList = document.querySelector('.products__list');
     // Проходим по каждому товару и создаем карточку с изображением
@@ -83,7 +97,7 @@ function renderProducts() {
             <div class="card__description">
                 <div class="description__image description__image-mobile">
                     <div class="card_description--checkbox checkbox-mobile">
-                        <input type="checkbox" id="${checkBoxId}" class="checkbox" checked>
+                        <input type="checkbox" id="${checkBoxId}" class="checkbox" checked data-price="${product.priceWithSale}">
                         <label for="${checkBoxId}"></label>
                     </div>
                     ${size_mobile}
@@ -91,10 +105,10 @@ function renderProducts() {
                 </div>
                 <div class="description__text">
                     <div class="actions__price actions__price-mobile">
-                        <div class="price__actual">
-                            <h3>${product.priceWithSale}</h3><h4> сом</h4>
+                        <div class="price__actual-mobile">
+                            <h3>${product.priceWithSale * product.currentAmount}</h3><h4> сом</h4>
                         </div>
-                        <span class="price__sale">${product.price} сом</span>
+                        <span class="price__sale-mobile">${product.price * product.currentAmount} сом</span>
                      </div>
                     <span class="description__name">${product.name}</span>
                     ${colorSizeMarkup}
@@ -120,12 +134,49 @@ function renderProducts() {
                 </div>
                 <div class="actions__price">
                     <div class="price__actual">
-                        <h3>${product.priceWithSale}</h3><h4> сом</h4>
+                        <h3>${product.priceWithSale * product.currentAmount}</h3><h4> сом</h4>
                     </div>
-                    <span class="price__sale">${product.price} сом</span>
+                    <span class="price__sale">${product.price * product.currentAmount} сом</span>
                 </div>
             </div>
         `;
+
+        const chooseAllCheckbox = document.getElementById('choose_all');
+
+        chooseAllCheckbox.addEventListener('change', () => {
+            const isChecked = chooseAllCheckbox.checked;
+
+            // Перебираем все чекбоксы и устанавливаем или снимаем атрибут checked в зависимости от состояния "Выбрать все"
+            const checkboxes = document.querySelectorAll('.checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+
+            // Обновляем данные на странице
+            updateTotalAmount();
+            updateTotalPriceWithDiscount();
+            updateTotalItems();
+        });
+
+        const deleteButton = card.querySelector('.button_delete');
+        // Добавляем обработчик события к кнопке удаления
+        deleteButton.addEventListener('click', () => {
+            deleteProduct(product.id);
+        });
+
+        const checkBox = card.querySelector('.checkbox');
+
+        const updateCardPrice = () => {
+            const actualPriceElement = card.querySelector('.price__actual h3');
+            const salePriceElement = card.querySelector('.price__sale');
+
+            // Пересчитываем цены и обновляем текстовое содержимое DOM-элементов
+            const actualPrice = product.priceWithSale * product.currentAmount;
+            const salePrice = product.price * product.currentAmount;
+            actualPriceElement.textContent = actualPrice.toLocaleString();
+            salePriceElement.textContent = salePrice.toLocaleString() + ' сом';
+        };
+
         const reduceButton = card.querySelector('.reduce_amount');
         const increaseButton = card.querySelector('.increase_amount');
 
@@ -134,6 +185,7 @@ function renderProducts() {
             if (product.currentAmount < product.totalAmount) {
                 product.currentAmount++;
                 updateProductAmount(product.id, product.currentAmount);
+                updateCardPrice();
             }
         });
 
@@ -142,36 +194,148 @@ function renderProducts() {
             if (product.currentAmount > 1) {
                 product.currentAmount--;
                 updateProductAmount(product.id, product.currentAmount);
+                updateCardPrice();
             }
         });
 
+
+        checkBox.addEventListener('change', () => {
+            const isChecked = checkBox.checked;
+
+            if (isChecked) {
+                totalAmount += product.priceWithSale * product.currentAmount;
+            } else {
+                totalAmount -= product.priceWithSale * product.currentAmount;
+            }
+
+            if (totalAmount < 0) {
+                totalAmount = 0;
+            }
+
+            updateTotalAmount(totalAmount);
+        });
+
         productList.appendChild(card);
+        updateCardPrice();
+
 
         updateProductAmount(product.id, product.currentAmount);
     });
 
 }
 
+function deleteProduct(productId) {
+    const index = products.findIndex(product => product.id === productId);
+    if (index !== -1) {
+        products.splice(index, 1);
+    }
+
+    // Пересчитываем данные на странице
+    updateTotalAmount();
+    updateTotalPriceWithDiscount();
+    updateTotalItems();
+    updateTotalProducts(); // Вызываем функцию для обновления totalProducts
+
+    // Находим и удаляем соответствующий элемент из DOM
+    const cardElement = document.getElementById(productId);
+    if (cardElement) {
+        cardElement.remove();
+    }
+}
+
+function updateTotalProducts() {
+    totalProducts = products.length;
+    const totalProductsElement = document.querySelector('.item-count');
+    totalProductsElement.textContent = totalProducts; // Обновляем значение на странице
+}
+
+function updateTotalAmount() {
+    const totalAmountElement = document.querySelector('.total-amount');
+    const totalAmount = calculateTotalAmount();
+    totalAmountElement.textContent = `${totalAmount.toLocaleString()} сом`; // Преобразовываем число в строку с форматированием
+}
+
+function calculateTotalAmount() {
+    // Вычисляем общую стоимость выбранных товаров из массива products
+    return products.reduce((total, product) => {
+        const checkBox = document.getElementById(`checkbox-${product.id}`);
+        // Проверяем, выбран ли чекбокс товара
+        if (checkBox && checkBox.checked) {
+            // Если чекбокс выбран, добавляем цену товара с учетом количества к общей стоимости
+            return total + product.priceWithSale * product.currentAmount;
+        }
+        // Если чекбокс не выбран или не найден, оставляем общую стоимость без изменений
+        return total;
+    }, 0);
+}
+
+function updateTotalPriceWithDiscount() {
+    const totalPriceWithDiscountElement = document.querySelector('.total-price-with-discount');
+    const totalPriceWithDiscount = calculateTotalPriceWithDiscount();
+    totalPriceWithDiscountElement.textContent = `${totalPriceWithDiscount.toLocaleString()} сом`;
+}
+function calculateTotalPriceWithDiscount() {
+    return products.reduce((total, product) => {
+        const checkBox = document.getElementById(`checkbox-${product.id}`);
+        // Проверяем, выбран ли чекбокс товара, включено ли товар в общую стоимость и больше ли нуля текущее количество товара
+        if (checkBox && checkBox.checked && product.currentAmount > 0) {
+            // Если чекбокс выбран и товар включен в общую стоимость, учитываем цену товара с учетом количества
+            total += product.price * product.currentAmount;
+        }
+        return total;
+    }, 0);
+}
+
+function updateTotalItems() {
+    const totalItemsElement = document.querySelector('.total-items');
+    const totalItems = calculateTotalItems();
+    totalItemsElement.textContent = `${totalItems} товара`;
+
+    // Функция для подсчета общего количества выбранных товаров
+    function calculateTotalItems() {
+        // Вычисляем общее количество выбранных товаров из массива products
+        return products.reduce((total, product) => {
+            const checkBox = document.getElementById(`checkbox-${product.id}`);
+            // Проверяем, выбран ли чекбокс товара и включено ли товар в общее количество
+            if (checkBox && checkBox.checked && product.currentAmount > 0) {
+                // Если чекбокс выбран и товар включен в общее количество, увеличиваем общее количество товаров
+                return total + product.currentAmount;
+            }
+            // Если чекбокс не выбран или не найден, или товар не включен в общее количество, оставляем общее количество без изменений
+            return total;
+        }, 0);
+    }
+}
 
 function updateProductAmount(productId, newAmount) {
-    const card = document.getElementById(productId);
-    if (card) {
-        card.querySelector('.amount').textContent = newAmount;
+    const product = products.find(item => item.id === productId);
 
-        const reduceButton = card.querySelector('.reduce_amount');
-        const increaseButton = card.querySelector('.increase_amount');
+    if (product) {
+        product.currentAmount = newAmount; // Обновляем количество товара в массиве products
+        const card = document.getElementById(productId);
+        if (card) {
+            card.querySelector('.amount').textContent = newAmount;
 
-        // Обновляем классы кнопок увеличения и уменьшения в зависимости от значения newAmount
-        if (newAmount === 1) {
-            reduceButton.classList.add('max-amount');
-        } else {
-            reduceButton.classList.remove('max-amount');
-        }
+            const reduceButton = card.querySelector('.reduce_amount');
+            const increaseButton = card.querySelector('.increase_amount');
 
-        if (newAmount === products.find(item => item.id === productId).totalAmount) {
-            increaseButton.classList.add('max-amount');
-        } else {
-            increaseButton.classList.remove('max-amount');
+            // Обновляем классы кнопок увеличения и уменьшения в зависимости от значения newAmount
+            if (newAmount === 1) {
+                reduceButton.classList.add('max-amount');
+            } else {
+                reduceButton.classList.remove('max-amount');
+            }
+
+            if (newAmount === product.totalAmount) {
+                increaseButton.classList.add('max-amount');
+            } else {
+                increaseButton.classList.remove('max-amount');
+            }
+
+            // Обновляем общую стоимость товаров
+            updateTotalAmount();
+            updateTotalPriceWithDiscount();
+            updateTotalItems();
         }
     }
 }
@@ -350,9 +514,12 @@ function getSelectedCardId() {
 }
 
 
+const dropStock = document.getElementById('dropStock');
+const stockProducts = document.querySelector('.stock__products');
+
+dropStock.addEventListener('click', function() {
+    dropStock.classList.toggle('rotated');
+    stockProducts.classList.toggle('hidden');
+});
 
 // Вызываем функцию отображения товаров при загрузке страницы
-window.onload = function() {
-    renderProducts();
-    renderAbsent();
-};

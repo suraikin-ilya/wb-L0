@@ -10,6 +10,7 @@
 </head>
 <body>
   <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/validation.js"></script>
   <header class="header">
     <div class="container">
       <div class="header__content">
@@ -171,16 +172,18 @@
               </div>
               <div class="form__details">
                 <div class="input-container">
-                  <input type="text" id="email" class="email" placeholder="Почта">
-  <!--                <span class="info-span">Для </span>-->
+                  <input type="email" id="email" class="email" placeholder="Почта">
+                  <span class="info-span--error">Проверьте адрес электронной почты</span>
                 </div>
                 <div class="input-container">
-                  <input type="text" id="phone-number" class="phone-number" value="+7 988 123-45-67" placeholder="Телефон">
+                  <input type="text" id="phone-number" class="phone-number" value="" placeholder="+7 988 123-45-67">
                   <span class="info-span--phone">Телефон</span>
+                  <span class="info-error--phone">Формат: +9 999 999 99 99</span>
                 </div>
                 <div class="input-container">
                   <input type="text" id="INN" class="INN" placeholder="ИНН">
                   <span class="info-span">Для таможенного оформления</span>
+                  <span class="info-error--INN">Проверьте ИНН</span>
                 </div>
               </div>
             </div>
@@ -190,11 +193,12 @@
           <div class="total--adaptive">
             <div class="total__header">
               <span>Итого</span>
-              <span>2 101 063 сом</span>
+<!--              <div class="total-amount"></div>-->
+              <span class="total-amount">2 101 063 сом</span>
             </div>
             <div class="total__detail total__detail--amount">
-              <span>203 товара</span>
-              <span>2 302 048 сом</span>
+              <span class="total-items">203 товара</span>
+              <span class="total-price-with-discount">2 302 048 сом</span>
             </div>
             <div class="total__detail">
               <span>Скидка</span>

@@ -683,14 +683,14 @@ h1{
     color: rgba(255, 59, 48, 1);
 }
 
-.price__actual{
+.price__actual, .price__actual-mobile{
     margin-bottom: 1px;
     position: relative;
     bottom: 4px;
     right: 2px;
 }
 
-.price__actual h3{
+.price__actual h3, .price__actual-mobile h3{
     margin-top: 0;
     font-size: 20px;
     font-weight: 700;
@@ -701,7 +701,7 @@ h1{
     margin-right: 3px;
 }
 
-.price__actual h4{
+.price__actual h4, .price__actual-mobile h4{
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
@@ -734,7 +734,7 @@ h1{
     align-items: flex-end;
 }
 
-.price__sale{
+.price__sale, .price__sale-mobile{
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;
@@ -1078,7 +1078,7 @@ h1{
 }
 
 
-.info-span {
+.info-span, .info-span--error, .info-error--phone, .info-error--INN {
     display: block;
     font-size: 12px;
     font-weight: 400;
@@ -1090,6 +1090,11 @@ h1{
     position: absolute;
 
     bottom: -18px; /* Расстояние между инпутом и span */
+}
+
+.info-span--error, .info-error--phone ,.info-error--INN{
+    color: red;
+    display: none;
 }
 
 .info-span--phone{
@@ -1434,6 +1439,38 @@ h1{
 
 body.popup-open {
     overflow: hidden;
+}
+
+#dropStock {
+    transition: transform 0.3s ease; /* Анимация для плавного вращения */
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+.stock__products {
+    display: block; /* По умолчанию блок видимый */
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+.hidden {
+    animation: slideUp 0.5s ease forwards;
+    display: none;
+}
+
+.stock__products {
+    opacity: 1; /* Начальная непрозрачность */
 }
 
 @media screen and (max-width: 1300px){
@@ -1952,7 +1989,7 @@ body.popup-open {
 
     }
 
-    .actions__price-mobile .price__sale{
+    .actions__price-mobile .price__sale, .price__sale-mobile{
         line-height: 26px;
         margin-left: 6px;
     }
