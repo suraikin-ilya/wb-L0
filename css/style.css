@@ -1137,6 +1137,10 @@ h1{
     display: none;
 }
 
+.tab-bar{
+    display: none;
+}
+
 @media screen and (max-width: 1300px){
     .basket{
 
