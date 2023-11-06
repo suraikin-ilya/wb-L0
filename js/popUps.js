@@ -163,4 +163,240 @@ function getSelectedCardId() {
     return selectedRadio ? selectedRadio.id.split('-')[1] : null;
 }
 
+let selectedCardId = null;
+let selectedCard = null;
+
+// Слушаем событие изменения выбора радиокнопок
+document.querySelectorAll('input[name="payment-method"]').forEach(radioInput => {
+    radioInput.addEventListener('change', () => {
+        selectedCardId = getSelectedCardId();
+        if (selectedCardId) {
+            selectedCard = cards.find(card => card.id === parseInt(selectedCardId));
+        }
+    });
+});
+
+chooseButton.addEventListener('click', () => {
+    if (selectedCard) {
+        const paymentMethodImage = document.querySelector('.total__payment-image');
+        const paymentMethodNumber = document.querySelector('.total__payment-number');
+        const bankCardImage = document.querySelector('.total__payment-mir');
+        const cardNumberSpan = document.querySelector('.card-number');
+
+        paymentMethodImage.src = selectedCard.image;
+        paymentMethodNumber.textContent = selectedCard.number;
+        bankCardImage.src = selectedCard.image;
+        cardNumberSpan.textContent = selectedCard.number;
+
+        // Скрыть или показать блоки согласно вашей логике
+        // Например:
+        // popupPayment.style.display = 'none';
+        // popupDelivery.style.display = 'none';
+    }
+});
+
+const delivery = [
+    {
+        id: 1,
+        address: 'г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1',
+        default: true,
+        type: 'point'
+    },
+    {
+        id: 2,
+        address: 'г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1',
+        default: false,
+        type: 'point'
+    },
+    {
+        id: 2,
+        address: 'г. Бишкек, улица Табышалиева, д. 57',
+        default: false,
+        type: 'point'
+    },
+    {
+        id: 4,
+        address: 'Бишкек, улица Табышалиева, 57',
+        default: false,
+        type: 'courier'
+    },
+    {
+        id: 5,
+        address: 'Бишкек, улица Жукеева-Пудовкина, 77/1',
+        default: false,
+        type: 'courier'
+    },
+    {
+        id: 6,
+        address: 'Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1',
+        default: false,
+        type: 'courier'
+    },
+];
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const pointCardList = document.querySelector('.courier__card-list');
+    const courierCardList = document.querySelector('.point__card-list');
+
+    const [pointAddresses, courierAddresses] = delivery.reduce((acc, address) => {
+        if (address.type === 'point') {
+            acc[0].push(address);
+        } else if (address.type === 'courier') {
+            acc[1].push(address);
+        }
+        return acc;
+    }, [[], []]);
+
+    function renderPoints() {
+        pointCardList.innerHTML = '';
+
+        pointAddresses.forEach(point => {
+            const addressCardDiv = document.createElement('div');
+            addressCardDiv.classList.add('address-card', 'address-card-courier');
+
+            const radioContainerDiv = document.createElement('div');
+
+            const radioInput = document.createElement('input');
+            radioInput.type = 'radio';
+            radioInput.name = 'point-address';
+            radioInput.id = `point-${point.id}`;
+            radioInput.classList.add('custom-radio');
+            if (point.default) {
+                radioInput.checked = true;
+            }
+
+            const label = document.createElement('label');
+            label.setAttribute('for', `point-${point.id}`);
+
+            radioContainerDiv.appendChild(radioInput);
+            radioContainerDiv.appendChild(label);
+            addressCardDiv.appendChild(radioContainerDiv);
+
+            const cardCourierAddressDiv = document.createElement('div');
+            cardCourierAddressDiv.classList.add('card-courier__address');
+
+            const addressSpan = document.createElement('span');
+            addressSpan.classList.add('courier__address');
+            addressSpan.textContent = point.address;
+
+            const starPointDiv = document.createElement('div');
+            starPointDiv.classList.add('star-point');
+
+            const starImg = document.createElement('img');
+            starImg.src = './img/star_fill.svg';
+            starImg.alt = '';
+
+            const starSpan = document.createElement('span');
+            starSpan.textContent = 'Пункт выдачи';
+
+            starPointDiv.appendChild(starImg);
+            starPointDiv.appendChild(starSpan);
+            cardCourierAddressDiv.appendChild(addressSpan);
+            cardCourierAddressDiv.appendChild(starPointDiv);
+            addressCardDiv.appendChild(cardCourierAddressDiv);
+
+            const deleteImg = document.createElement('img');
+            deleteImg.classList.add('deleteAddress');
+            deleteImg.src = 'img/delete-address.svg';
+            deleteImg.alt = '';
+            addressCardDiv.appendChild(deleteImg);
+
+            cardCourierAddressDiv.addEventListener('click', () => {
+                radioInput.checked = true;
+            });
+
+            if (point.default) {
+                radioInput.checked = true;
+            }
+
+            deleteImg.addEventListener('click', () => {
+                const index = delivery.findIndex(item => item.id === point.id);
+                if (index !== -1) {
+                    delivery.splice(index, 1);
+                    renderPoints();
+                }
+            });
+
+            pointCardList.appendChild(addressCardDiv);
+        });
+    }
+
+    function renderCouriers() {
+        courierCardList.innerHTML = '';
+
+        courierAddresses.forEach(courier => {
+            const addressCardDiv = document.createElement('div');
+            addressCardDiv.classList.add('address-card');
+
+            const radioInput = document.createElement('input');
+            radioInput.type = 'radio';
+            radioInput.name = 'point-address';
+            radioInput.id = `point-${courier.id}`;
+            radioInput.classList.add('custom-radio');
+            if (courier.default) {
+                radioInput.checked = true;
+            }
+
+            const label = document.createElement('label');
+            label.setAttribute('for', `point-${courier.id}`);
+            const addressSpan = document.createElement('span');
+            addressSpan.textContent = courier.address;
+
+            const deleteImg = document.createElement('img');
+            deleteImg.classList.add('deleteAddress');
+            deleteImg.src = 'img/delete-address.svg';
+            deleteImg.alt = '';
+
+            label.appendChild(addressSpan);
+            addressCardDiv.appendChild(radioInput);
+            addressCardDiv.appendChild(label);
+            addressCardDiv.appendChild(deleteImg);
+
+            deleteImg.addEventListener('click', () => {
+                const index = delivery.findIndex(item => item.id === courier.id);
+                if (index !== -1) {
+                    delivery.splice(index, 1);
+                    renderCouriers();
+                }
+            });
+
+            courierCardList.appendChild(addressCardDiv);
+        });
+    }
+
+    const selectButton = document.getElementById('selectButton');
+    const deliveryAddressSpan = document.querySelector('.delivery-address');
+    const propertyValueAddressSpan = document.querySelector('.property-value-address');
+
+    selectButton.addEventListener('click', () => {
+        const selectedPointId = document.querySelector('input[name="point-address"]:checked').id;
+
+        delivery.forEach(item => {
+            item.default = false;
+        });
+
+        const selectedPoint = delivery.find(item => item.id.toString() === selectedPointId.split('-')[1]);
+        if (selectedPoint) {
+            selectedPoint.default = true;
+        }
+
+        const defaultAddress = delivery.find(item => item.default);
+        if (defaultAddress) {
+            deliveryAddressSpan.textContent = defaultAddress.address;
+            propertyValueAddressSpan.textContent = defaultAddress.address;
+        } else {
+            deliveryAddressSpan.textContent = 'Адрес не выбран';
+            propertyValueAddressSpan.textContent = 'Адрес не выбран';
+        }
+
+        renderPoints();
+        renderCouriers();
+        closeDeliveryPopup();
+    });
+
+    renderPoints();
+    renderCouriers();
+
+});
 

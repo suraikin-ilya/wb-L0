@@ -1422,14 +1422,32 @@ h1{
     /*margin-left: 8px;*/
 }
 
+.star-point img{
+    margin-right: 8px;
+}
+
 .address-card-courier{
     align-items: flex-start;
+
     justify-content: space-between;
+    gap: 8px;
 }
 
 .card-courier__address span{
     margin-left: 0;
 }
+
+.address-card-courier label{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-courier__address{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 
 .address-card-courier label .card-courier__address{
     position: relative;
@@ -1438,6 +1456,11 @@ h1{
     bottom: 4px;
     align-items: flex-start;
     width: calc(100% - 56px);
+}
+
+.card-courier__address{
+    position: relative;
+    bottom: 6px;
 }
 
 .address-card-courier label, .address-card-courier img{
@@ -1489,6 +1512,22 @@ body.popup-open {
 .hidden {
     animation: slideUp 0.5s ease forwards;
     display: none;
+}
+
+.price__actual h3 {
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+    text-align: right;
+}
+
+.price__actual h3.long-text {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.price__actual h3.short-text {
+    font-size: 20px;
 }
 
 @media screen and (max-width: 1300px){
@@ -1822,7 +1861,7 @@ body.popup-open {
     .form__details{
         gap: 44px;
     }
-    .form__details .input-container{
+    .form__details .input-container , .form__full-name .input-container{
         min-width: 100%;
     }
     .recipient__form{

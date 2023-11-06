@@ -445,3 +445,18 @@ function validateForm(event) {
         document.getElementById("INN").scrollIntoView();
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const h3Elements = document.querySelectorAll('.price__actual h3');
+
+    h3Elements.forEach(function(element) {
+        // Удаляем все пробелы и проверяем длину текста
+        const textLength = element.textContent.replace(/\s/g, '').length;
+
+        if (textLength > 4) {
+            element.classList.add('long-text');
+        } else {
+            element.classList.add('short-text');
+        }
+    });
+});

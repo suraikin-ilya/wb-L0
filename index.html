@@ -115,7 +115,7 @@
               <div class="property point">
                 <span class="property__span">Пункт выдачи</span>
                 <div class="point-value">
-                  <span class="property-value address">Бишкек, улица Ахматбека Суюмбаева, 12/1</span>
+                  <span class="property-value address property-value-address">Бишкек, улица Ахматбека Суюмбаева, 12/1</span>
                   <img src="./img/star.svg" alt="">
                   <span class="property-value rating">4.99 </span>
                   <span class="property-value time">Ежедневно с 10 до 21</span>
@@ -218,7 +218,7 @@
               <span>Доставка в пункт выдачи</span>
               <img id="popup-delivery-button" src="./img/Edit.svg" alt="">
             </div>
-            <span>Бишкек, улица Ахматбека Суюмбаева, 12/1</span>
+            <span class="delivery-address">Бишкек, улица Ахматбека Суюмбаева, 12/1</span>
             <span>5–8 фев</span>
           </div>
           <div class="total__reverse">
@@ -233,9 +233,8 @@
               <span>Оплата картой</span>
               <img id="popup-payment-button" src="./img/Edit.svg" alt="">
             </div>
-            <img class="total__payment-mir" src="./img/mir.svg" alt="">
-            <span>1234 12•• •••• 1234</span>
-
+            <img class="total__payment-mir total__payment-image" src="./img/mir.svg" alt="">
+            <span class="total__payment-number">1234 12•• •••• 1234</span>
           </div>
           <div class="payment__checkbox">
             <input type="checkbox" id="immediately" class="checkbox">
@@ -324,7 +323,7 @@
   <div id="popup-delivery" class="popup">
     <div class="popup-content popup-delivery">
       <div class="pop-up__header">
-        <h3>Способ оплаты</h3>
+        <h3>Способ доставки</h3>
         <img id="closeBtn-delivery" src="./img/close.svg" alt="">
       </div>
       <div class="popup-delivery__buttons">
@@ -339,22 +338,23 @@
       </div>
       <div class="popup-delivery__list">
         <div class="courier-list" id="courier-list">
-          <!-- Ваш контент для первой вкладки -->
           <h4>Мои адреса</h4>
           <div class="courier__card-list">
-            <div class="address-card address-card-courier">
-              <input type="radio" name="point-address" id="4" class="custom-radio" checked>
-              <label for="4">
-                <div class="card-courier__address">
-                  <span>г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1</span>
-                  <div class="star-point">
-                    <img src="./img/star_fill.svg" alt="">
-                    <span>Пункт выдачи</span>
-                  </div>
-                </div>
-              </label>
-              <img class="deleteAddress" src="img/delete-address.svg" alt="">
-            </div>
+<!--            <div class="address-card address-card-courier">-->
+<!--              <div>-->
+<!--              <input type="radio" name="point-address" id="4" class="custom-radio" checked>-->
+<!--              <label for="4">-->
+<!--              </label>-->
+<!--              </div>-->
+<!--              <div class="card-courier__address">-->
+<!--                <span class="courier__address">г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1</span>-->
+<!--                <div class="star-point">-->
+<!--                  <img src="./img/star_fill.svg" alt="">-->
+<!--                  <span>Пункт выдачи</span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <img class="deleteAddress" src="img/delete-address.svg" alt="">-->
+<!--            </div>-->
           </div>
         </div>
         <div class="point-list" id="point-list">
@@ -385,7 +385,7 @@
         </div>
       </div>
       <div class="delivery-choose">
-        <div class="delivery-choose__button">
+        <div class="delivery-choose__button" id="selectButton">
           <span>Выбрать</span>
         </div>
       </div>
