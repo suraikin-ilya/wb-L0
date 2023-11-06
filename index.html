@@ -9,8 +9,10 @@
 
 </head>
 <body>
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/renderProducts.js"></script>
   <script type="module" src="js/validation.js"></script>
+  <script type="module" src="js/popUps.js"></script>
+  <script type="module" src="js/dropProducts.js"></script>
   <header class="header">
     <div class="container">
       <div class="header__content">
@@ -76,6 +78,10 @@
                 <input type="checkbox" id="choose_all" class="checkbox choose__all" checked>
                 <label for="choose_all">Выбрать все</label>
               </div>
+              <div class="stock__header--drop hidden">
+                <span class="header__drop--items">266 товаров</span>
+                <span class="header__drop--amount"> · 2 100 569 сом</span>
+              </div>
               <img src="./img/arrow.svg" alt="" id="dropStock">
             </div>
             <div class="stock__products">
@@ -89,7 +95,7 @@
             <div class="absent__header">
               <div class="absent__header--span">
                 <span>Отсутствуют · </span>
-                <span>3</span>
+                <span class="absent-items-amount">3</span>
                 <span> товара</span>
               </div>
               <img src="./img/arrow.svg" alt="" id="dropAbsent">

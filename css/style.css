@@ -614,6 +614,7 @@ h1{
     border-radius: 8px;
     background: rgba(255, 255, 255, 1);
     margin-bottom: 3px;
+    user-select: none;
 }
 
 .card__actions{
@@ -717,6 +718,7 @@ h1{
     gap: 19px;
     flex-direction: row-reverse;
     align-items: start;
+    user-select: none;
 }
 
 .button_delete, .button_favorite{
@@ -726,6 +728,17 @@ h1{
 .button_delete{
     position: relative;
     right: 1px;
+    fill: rgba(0, 0, 0, 1);
+;
+    /*transition: fill 0.3s ease;*/
+}
+
+.button_delete:hover{
+    fill: rgba(245, 81, 35, 1);
+}
+
+.button_favorite{
+    fill: rgba(203, 17, 171, 1);
 }
 
 .actions__price{
@@ -1432,6 +1445,19 @@ h1{
 
 }
 
+.stock__header--drop{
+    display: block;
+}
+
+.stock__header--drop span{
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: left;
+
+}
 
 #deleteAddress{
     cursor: pointer;
@@ -1449,10 +1475,6 @@ body.popup-open {
     transform: rotate(180deg);
 }
 
-.stock__products {
-    display: block; /* По умолчанию блок видимый */
-}
-
 @keyframes slideUp {
     0% {
         transform: translateY(0);
@@ -1467,10 +1489,6 @@ body.popup-open {
 .hidden {
     animation: slideUp 0.5s ease forwards;
     display: none;
-}
-
-.stock__products {
-    opacity: 1; /* Начальная непрозрачность */
 }
 
 @media screen and (max-width: 1300px){
