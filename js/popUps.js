@@ -50,13 +50,11 @@ const popupDeliveryButton = document.getElementById('popup-delivery-button');
 const changeDeliveryButton = document.querySelector('.change-delivery');
 const closeBtnDelivery = document.getElementById('closeBtn-delivery');
 
-// Функция для открытия pop-up
 function openDeliveryPopup() {
     popupDelivery.style.display = 'flex';
     document.body.classList.add('popup-open');
 }
 
-// Функция для закрытия pop-up
 function closeDeliveryPopup() {
     popupDelivery.style.display = 'none';
     document.body.classList.remove('popup-open');
@@ -67,8 +65,8 @@ const pointRadio = document.getElementById('point');
 const courierList = document.getElementById('courier-list');
 const pointList = document.getElementById('point-list');
 
-pointRadio.checked = true; // Устанавливаем pointRadio в состояние checked по умолчанию
-pointList.style.display = 'block'; // Показываем point-list по умолчанию
+pointRadio.checked = true;
+pointList.style.display = 'block';
 
 courierRadio.addEventListener('change', () => {
     courierList.style.display = courierRadio.checked ? 'block' : 'none';
@@ -80,7 +78,6 @@ pointRadio.addEventListener('change', () => {
     pointList.style.display = pointRadio.checked ? 'block' : 'none';
 });
 
-// Назначаем события клика на кнопки и кнопку закрытия
 popupDeliveryButton.addEventListener('click', openDeliveryPopup);
 changeDeliveryButton.addEventListener('click', openDeliveryPopup);
 closeBtnDelivery.addEventListener('click', closeDeliveryPopup);
@@ -104,7 +101,6 @@ pointInput.addEventListener('change', function() {
 const cardListElement = document.getElementById('cardList');
 const chooseButton = document.querySelector('.payment-choose__button');
 
-// Перебираем массив cards и создаем элементы для каждой карты
 cards.forEach(card => {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('payment-card');
@@ -125,21 +121,17 @@ cards.forEach(card => {
     const span = document.createElement('span');
     span.textContent = card.number;
 
-    // Добавляем созданные элементы в дерево DOM
     label.appendChild(img);
     label.appendChild(span);
     cardDiv.appendChild(radioInput);
     cardDiv.appendChild(label);
     cardListElement.appendChild(cardDiv);
 
-    // Если карта помечена как default, делаем ее выбранной по умолчанию
     if (card.default) {
         radioInput.checked = true;
     }
 
-    // Слушаем события изменения выбора радиокнопок
     radioInput.addEventListener('change', () => {
-        // Обновляем свойство default в массиве cards в зависимости от выбранной карты
         cards.forEach(c => {
             if (c.id === card.id) {
                 c.default = true;
@@ -150,15 +142,12 @@ cards.forEach(card => {
     });
 });
 
-// Слушаем событие клика на кнопке "Выбрать"
 chooseButton.addEventListener('click', () => {
-    // Здесь вы можете выполнить дополнительные действия при нажатии на кнопку "Выбрать"
     popupPayment.style.display = 'none';
     console.log('Выбрана карта с id:', getSelectedCardId());
 });
 
 function getSelectedCardId() {
-    // Находим выбранную радиокнопку и возвращаем ее id
     const selectedRadio = document.querySelector('input[name="payment-method"]:checked');
     return selectedRadio ? selectedRadio.id.split('-')[1] : null;
 }
@@ -166,7 +155,6 @@ function getSelectedCardId() {
 let selectedCardId = null;
 let selectedCard = null;
 
-// Слушаем событие изменения выбора радиокнопок
 document.querySelectorAll('input[name="payment-method"]').forEach(radioInput => {
     radioInput.addEventListener('change', () => {
         selectedCardId = getSelectedCardId();
@@ -187,11 +175,6 @@ chooseButton.addEventListener('click', () => {
         paymentMethodNumber.textContent = selectedCard.number;
         bankCardImage.src = selectedCard.image;
         cardNumberSpan.textContent = selectedCard.number;
-
-        // Скрыть или показать блоки согласно вашей логике
-        // Например:
-        // popupPayment.style.display = 'none';
-        // popupDelivery.style.display = 'none';
     }
 });
 

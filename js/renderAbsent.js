@@ -43,7 +43,6 @@ const absentProducts = [
 function renderAbsent() {
     const productList = document.querySelector('.absent__list');
     productList.innerHTML = '';
-    // Проходим по каждому товару и создаем карточку с изображением
     absentProducts.forEach(product => {
         const absentCard = document.createElement('div');
         absentCard.className = 'absent__card';
@@ -83,7 +82,7 @@ function renderAbsent() {
             if (index !== -1) {
                 absentProducts.splice(index, 1);
                 renderAbsent();
-                updateAbsentItemsCount(); // Обновляем количество отсутствующих товаров после удаления
+                updateAbsentItemsCount();
             }
         });
 

@@ -54,7 +54,7 @@ const infoSpan = document.querySelector('.info-span');
 const errorSpanINN = document.querySelector('.info-error--INN');
 
 INNInput.addEventListener('input', function(event) {
-    const inputValue = event.target.value.replace(/\D/g, ''); // Оставляем только цифры
+    const inputValue = event.target.value.replace(/\D/g, '');
     if (inputValue.length > 0 && inputValue.length === 14) {
         infoSpan.style.display = 'block';
         errorSpanINN.style.display = 'none';
@@ -70,12 +70,10 @@ const errorSpanName = document.querySelector('.span--error-name');
 const errorSpanSurname = document.querySelector('.span--error-surname');
 
 function isValidName(name) {
-    // Проверяем, что имя состоит только из букв и тире/дефиса, и не пустое
     return /^[А-Яа-яA-Za-z\-]+$/.test(name);
 }
 
 function isValidSurname(surname) {
-    // Проверяем, что фамилия состоит только из букв и тире/дефиса, и не пустая
     return /^[А-Яа-яA-Za-z\-]+$/.test(surname);
 }
 

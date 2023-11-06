@@ -7,7 +7,6 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     font-family: 'Segoe UI', sans-serif;
-    /*min-height: 100vh;*/
 }
 
 .container{
@@ -37,8 +36,6 @@ footer{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /*padding-left: 24px;*/
-    /*padding-right: 10px;*/
 }
 
 .header__rounding{
@@ -70,7 +67,6 @@ footer{
 }
 
 .header__logo a{
-    /*width: 106px;*/
     padding-top: 1px;
     font-size: 22px;
     font-weight: 600;
@@ -81,7 +77,6 @@ footer{
     cursor: pointer;
     text-decoration: none;
     text-transform: uppercase;
-    /*margin-left: 16px;*/
 ;}
 
 .header__search input{
@@ -150,7 +145,7 @@ footer{
     color: white;
     border-radius: 50%;
     position: absolute;
-    top: -20px; /* Отрицательный отступ сверху для позиционирования счетчика над иконкой */
+    top: -20px;
     right: 3px;
 }
 
@@ -180,7 +175,6 @@ footer{
 
 .adaptive{
     display: grid;
-    /*height: 500px;*/
     margin: 0 auto;
     justify-content: center;
     grid-template-columns: minmax(auto, 891px) minmax(auto, 429px);
@@ -202,7 +196,6 @@ footer{
 .total--adaptive div{
     display: flex;
     justify-content: space-between;
-    /*flex-direction: column;*/
 }
 
 .total__header span{
@@ -216,7 +209,6 @@ footer{
 
 .total__header span:nth-child(2){
     letter-spacing: -0.04em;
-    /*line-height: 28px;*/
     text-align: center;
 }
 
@@ -406,12 +398,6 @@ footer{
     user-select: none;
 }
 
-.payment__checkbox span:nth-child(2){
-    /*position: relative;*/
-    /*left: 6px;*/
-    /*bottom: 5px;*/
-}
-
 .total__order--button{
     margin-top: 24px;
     width: 100%;
@@ -438,29 +424,21 @@ footer{
     margin-top: 12px;
     display: flex;
     flex-direction: row;
-    /*justify-content: flex-start;*/
     align-items: flex-start;
 }
 
-/*.span-underline{*/
-/*    text-decoration: underline;*/
-/*}*/
-
 .agreement img{
-    /*display: inline-block;*/
     position: relative;
     top: 3px;
     margin-right: 8px;
 }
 
 .agreement span{
-    /*display: inline-block;*/
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: 0;
     text-align: left;
-
 }
 
 h1{
@@ -532,7 +510,6 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: start;
-    /*padding-top: 1px;*/
 }
 
 .description__name{
@@ -698,7 +675,6 @@ h1{
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
-    /*letter-spacing: 0.01em;*/
     position: relative;
     left: 1px;
     text-align: right;
@@ -721,8 +697,6 @@ h1{
     position: relative;
     right: 1px;
     fill: rgba(0, 0, 0, 1);
-;
-    /*transition: fill 0.3s ease;*/
 }
 
 .button_delete:hover{
@@ -956,20 +930,19 @@ h1{
 }
 
 .image-wrapper {
-    position: relative; /* Позиционируем обертку относительно своего родителя */
-    display: inline-block; /* Делаем обертку блочным элементом, чтобы она занимала только необходимое пространство вокруг изображения */
+    position: relative;
+    display: inline-block;
 }
 
 
 .badge {
-    position: absolute; /* Позиционируем число абсолютно внутри обертки */
-    top: -8px; /* Отступ от верхнего края обертки */
-    right: -5px; /* Отступ от правого края обертки */
-    background-color: rgba(245, 81, 35, 1); /* Цвет фона числа */
+    position: absolute;
+    top: -8px;
+    right: -5px;
+    background-color: rgba(245, 81, 35, 1);
     color: #fff;
-    border-radius: 16px; /* Закругленные углы для круглой формы */
+    border-radius: 16px;
     padding: 0px 5px 0px 5px;
-    /*max-height: 6px;*/
     font-size: 10px;
     font-weight: 600;
     line-height: 16px;
@@ -988,10 +961,6 @@ h1{
     flex-direction: row;
     align-items: center;
     gap: 8px;
-}
-
-.free{
-    /*margin-left: 1px;*/
 }
 
 .bank-card img{
@@ -1094,7 +1063,7 @@ h1{
     margin-top: 8px;
     position: absolute;
 
-    bottom: -18px; /* Расстояние между инпутом и span */
+    bottom: -18px;
 }
 
 .info-span--error, .info-error--phone ,.info-error--INN,.span--error-name, .span--error-surname{
@@ -1109,13 +1078,10 @@ h1{
     line-height: 16px;
     letter-spacing: 0;
     text-align: left;
-
     color: rgba(151, 151, 175, 1);
     margin-top: 8px;
     position: absolute;
-
     bottom: 29px;
-    /*left: 1px;*/
 }
 
 .footer__content{
@@ -1214,16 +1180,15 @@ h1{
 
 .custom-radio {
     position: absolute;
-    /*z-index: -1;*/
     opacity: 0;
 }
-/* для элемента label связанного с .custom-radio */
+
 .custom-radio+label {
     display: inline-flex;
     align-items: center;
     user-select: none;
 }
-/* создание в label псевдоэлемента  before со следующими стилями */
+
 .custom-radio+label::before {
     content: '';
     display: inline-block;
@@ -1237,17 +1202,17 @@ h1{
     background-position: center center;
     background-size: 50% 50%;
 }
-/* стили при наведении курсора на радио */
+
 .custom-radio:not(:disabled):not(:checked)+label:hover::before {
     border-color: rgba(203, 17, 171, 1);
 }
-/* стили для активной радиокнопки (при нажатии на неё) */
+
 .custom-radio:not(:disabled):active+label::before {
     background-color: rgba(203, 17, 171, 1);
     border-color: rgba(203, 17, 171, 1);
 }
 
-/* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
+
 .custom-radio:focus:not(:checked)+label::before {
     border-color: rgba(203, 17, 171, 1);
 }
@@ -1355,7 +1320,6 @@ h1{
     border-color: rgba(203, 17, 171, 1);
 }
 
-/* Остальные стили для невыбранных радио-инпутов */
 .custom-radio-delivery input:not(:checked) + label {
     border-color: rgba(203, 17, 171, 0.15);
 }
@@ -1411,7 +1375,6 @@ h1{
 
 .star-point{
     display: block;
-    /*margin-left: 8px;*/
 }
 
 .star-point img{
@@ -1483,7 +1446,7 @@ body.popup-open {
 }
 
 #dropStock {
-    transition: transform 0.3s ease; /* Анимация для плавного вращения */
+    transition: transform 0.3s ease;
 }
 
 .rotated {
@@ -1523,23 +1486,22 @@ body.popup-open {
 }
 
 .purple-underline {
-    text-decoration: none; /* Убираем стандартное подчеркивание текста */
-    background-image: url('data:image/svg+xml;utf8,<svg width="49" height="2" xmlns="http://www.w3.org/2000/svg"><path d="M1 1H48" stroke="%23CB11AB" stroke-opacity="0.2" stroke-linecap="square" stroke-dasharray="4 2"/></svg>'); /* Устанавливаем SVG как фон */
-    background-repeat: repeat-x; /* Повторяем фон горизонтально */
-    background-position: bottom; /* Располагаем фон внизу текста */
-    color: transparent; /* Делаем текст невидимым (прозрачным), чтобы виден был только фон */
+    text-decoration: none;
+    background-image: url('data:image/svg+xml;utf8,<svg width="49" height="2" xmlns="http://www.w3.org/2000/svg"><path d="M1 1H48" stroke="%23CB11AB" stroke-opacity="0.2" stroke-linecap="square" stroke-dasharray="4 2"/></svg>');
+    background-repeat: repeat-x;
+    background-position: bottom;
+    color: transparent;
     width: max-content;
 }
 
 .green-underline {
-    text-decoration: none; /* Убираем стандартное подчеркивание текста */
-    background-image: url('data:image/svg+xml;utf8,<svg width="64" height="2" xmlns="http://www.w3.org/2000/svg"><path d="M1 0.970703H63" stroke="%230CB477" stroke-opacity="0.2" stroke-linecap="square" stroke-dasharray="4 2"/></svg>'); /* Устанавливаем SVG как фон */
-    background-repeat: repeat-x; /* Повторяем фон горизонтально */
-    background-position: bottom; /* Располагаем фон внизу текста */
-    color: transparent; /* Делаем текст невидимым (прозрачным), чтобы виден был только фон */
+    text-decoration: none;
+    background-image: url('data:image/svg+xml;utf8,<svg width="64" height="2" xmlns="http://www.w3.org/2000/svg"><path d="M1 0.970703H63" stroke="%230CB477" stroke-opacity="0.2" stroke-linecap="square" stroke-dasharray="4 2"/></svg>');
+    background-repeat: repeat-x;
+    background-position: bottom;
+    color: transparent;
     width: max-content;
 }
-
 
 
 @media screen and (max-width: 1300px){
@@ -1571,7 +1533,6 @@ body.popup-open {
     .adaptive{
         grid-template-columns: minmax(auto, 640px) minmax(auto, 303px);
         display: grid;
-        /*height: 500px;*/
         margin: 0 auto;
         justify-content: center;
         max-width: 1024px;
@@ -1744,7 +1705,6 @@ body.popup-open {
         position: relative;
         padding-top: 1px;
         padding-bottom: 5px;
-        /*bottom: 2px;*/
     }
     .buttons__left{
         align-self: flex-start;
@@ -1807,7 +1767,6 @@ body.popup-open {
     }
     .absent__card, .card__photo{
         position: relative;
-        /*bottom: 1px;*/
         left: 2px;
     }
     .basket h2{
@@ -1920,7 +1879,7 @@ body.popup-open {
         letter-spacing: 0;
     }
     .footer__content, .footer__content span{
-        position: relative; /* Относительное позиционирование */
+        position: relative;
         margin-bottom: 80px;
     }
     .tab-bar{
@@ -2010,7 +1969,6 @@ body.popup-open {
 
     .card__photo{
         width: 80px;
-        /*max-width: 100%;*/
         height: auto;
         left: 0;
     }
