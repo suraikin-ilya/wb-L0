@@ -114,7 +114,7 @@ function renderProducts() {
                     <div class="price__actual">
                         <h3>${product.priceWithSale * product.currentAmount}</h3><h4> сом</h4>
                     </div>
-                    <span class="price__sale">${product.price * product.currentAmount} сом</span>
+                    <span class="price__sale gray-underline">${product.price * product.currentAmount} сом</span>
                 </div>
             </div>
         `;

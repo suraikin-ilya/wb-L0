@@ -271,14 +271,6 @@ footer{
     text-align: left;
     color: rgba(203, 17, 171, 1);
     margin-top: 4px;
-    /*background-image: url('img/Delivery_underline.svg');*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: right 2px top 4px;*/
-    background-image: url('img/Delivery_underline.svg'); /* Путь к вашему изображению с чёрточками */
-    background-repeat: repeat-x; /* Повторять изображение горизонтально */
-    background-position: bottom; /* Разместить изображение снизу текста */
-    text-decoration: none; /* Убрать стандартное подчёркивание текста */
-
 }
 
 .total__reverse{
@@ -1529,6 +1521,26 @@ body.popup-open {
 .price__actual h3.short-text {
     font-size: 20px;
 }
+
+.purple-underline {
+    text-decoration: none; /* Убираем стандартное подчеркивание текста */
+    background-image: url('data:image/svg+xml;utf8,<svg width="49" height="2" xmlns="http://www.w3.org/2000/svg"><path d="M1 1H48" stroke="%23CB11AB" stroke-opacity="0.2" stroke-linecap="square" stroke-dasharray="4 2"/></svg>'); /* Устанавливаем SVG как фон */
+    background-repeat: repeat-x; /* Повторяем фон горизонтально */
+    background-position: bottom; /* Располагаем фон внизу текста */
+    color: transparent; /* Делаем текст невидимым (прозрачным), чтобы виден был только фон */
+    width: max-content;
+}
+
+.green-underline {
+    text-decoration: none; /* Убираем стандартное подчеркивание текста */
+    background-image: url('data:image/svg+xml;utf8,<svg width="64" height="2" xmlns="http://www.w3.org/2000/svg"><path d="M1 0.970703H63" stroke="%230CB477" stroke-opacity="0.2" stroke-linecap="square" stroke-dasharray="4 2"/></svg>'); /* Устанавливаем SVG как фон */
+    background-repeat: repeat-x; /* Повторяем фон горизонтально */
+    background-position: bottom; /* Располагаем фон внизу текста */
+    color: transparent; /* Делаем текст невидимым (прозрачным), чтобы виден был только фон */
+    width: max-content;
+}
+
+
 
 @media screen and (max-width: 1300px){
     .basket{
