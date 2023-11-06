@@ -128,15 +128,7 @@
               <div class="property date-first">
                 <span class="property__span">5—6 февраля</span>
                 <div class="delivery__products">
-                  <img src="./img/t-short.jpg" alt="">
-                  <div class="image-wrapper">
-                    <img src="./img/card-holder.jpg" alt="">
-                    <span class="badge">184</span>
-                  </div>
-                  <div class="image-wrapper">
-                    <img src="./img/pencil.jpg" alt="">
-                    <span class="badge">2</span>
-                  </div>
+
                 </div>
               </div>
               <div class="property date-second">
@@ -173,8 +165,14 @@
             <h2>Получатель</h2>
             <div class="recipient__form">
               <div class="form__full-name">
-                <input type="text" id="name" class="name" placeholder="Имя">
-                <input type="text" id="surname" class="surname" placeholder="Фамилия">
+                <div class="input-container">
+                  <input type="text" id="name" class="name" placeholder="Имя">
+                  <span class="span--error-name">Укажите имя</span>
+                </div>
+                <div class="input-container">
+                  <input type="text" id="surname" class="surname" placeholder="Фамилия">
+                  <span class="span--error-surname">Укажите фамилию</span>
+                </div>
               </div>
               <div class="form__details">
                 <div class="input-container">
@@ -208,7 +206,7 @@
             </div>
             <div class="total__detail">
               <span>Скидка</span>
-              <span>−200 985 сом</span>
+              <span class="total-sale">−200 985 сом</span>
             </div>
             <div class="total__detail">
               <span>Доставка</span>
@@ -245,7 +243,7 @@
             <span>Спишем оплату с карты при получении</span>
           </div>
           <div class="total__order--button">
-            <button type="submit">Заказать</button>
+            <button type="submit" onclick="validateForm()">Заказать</button>
           </div>
           <div class="agreement">
             <img src="./img/check_mark.svg" alt="">

@@ -55,6 +55,7 @@ window.onload = function() {
     updateTotalAmount();
     updateTotalPriceWithDiscount();
     updateTotalItems();
+    updateDeliveryProductsContainer();
 
 };
 function renderProducts() {
@@ -133,6 +134,7 @@ function renderProducts() {
             updateTotalAmount();
             updateTotalPriceWithDiscount();
             updateTotalItems();
+            updateDeliveryProductsContainer();
         });
 
         const deleteButton = card.querySelector('.button_delete');
@@ -212,6 +214,7 @@ function deleteProduct(productId) {
     updateTotalPriceWithDiscount();
     updateTotalItems();
     updateTotalProducts(); // Вызываем функцию для обновления totalProducts
+    updateDeliveryProductsContainer();
 
     // Находим и удаляем соответствующий элемент из DOM
     const cardElement = document.getElementById(productId);
@@ -268,6 +271,10 @@ function updateTotalPriceWithDiscount() {
     const totalPriceWithDiscountElement = document.querySelector('.total-price-with-discount');
     const totalPriceWithDiscount = calculateTotalPriceWithDiscount();
     totalPriceWithDiscountElement.textContent = `${totalPriceWithDiscount.toLocaleString()} сом`;
+
+    const totalDiscountElement = document.querySelector('.total-sale');
+    const totalDiscount = calculateTotalDiscount();
+    totalDiscountElement.textContent = `−${totalDiscount.toLocaleString()} сом`;
 }
 function calculateTotalPriceWithDiscount() {
     return products.reduce((total, product) => {
@@ -279,6 +286,20 @@ function calculateTotalPriceWithDiscount() {
         }
         return total;
     }, 0);
+}
+
+function calculateTotalDiscount() {
+    const totalDiscount = products.reduce((total, product) => {
+        const checkBox = document.getElementById(`checkbox-${product.id}`);
+        // Проверяем, выбран ли чекбокс товара, включено ли товар в общую скидку и больше ли нуля текущее количество товара
+        if (checkBox && checkBox.checked && product.currentAmount > 0) {
+            // Если чекбокс выбран и товар включен в общую скидку, учитываем разницу между обычной ценой и ценой со скидкой
+            total += (product.price - product.priceWithSale) * product.currentAmount;
+        }
+        return total;
+    }, 0);
+
+    return totalDiscount;
 }
 
 function updateTotalItems() {
@@ -334,7 +355,93 @@ function updateProductAmount(productId, newAmount) {
             updateTotalAmount();
             updateTotalPriceWithDiscount();
             updateTotalItems();
+            updateDeliveryProductsContainer();
         }
     }
 }
 
+const deliveryProductsContainer = document.querySelector('.delivery__products');
+
+// Используем forEach для итерации по каждому продукту в массиве products
+function updateDeliveryProductsContainer() {
+    // Очищаем содержимое блока перед обновлением
+    deliveryProductsContainer.innerHTML = '';
+
+    // Используем forEach для итерации по каждому продукту в массиве products
+    products.forEach(product => {
+        // Создаем элементы div и img для каждого продукта
+        const productDiv = document.createElement('div');
+        productDiv.className = 'image-wrapper';
+
+        const productImage = document.createElement('img');
+        productImage.src = product.image;
+        productImage.alt = product.name;
+
+        // Создаем элемент span с классом "badge" и устанавливаем значение из поля currentAmount продукта
+        const badgeSpan = document.createElement('span');
+        badgeSpan.className = 'badge';
+        badgeSpan.textContent = product.currentAmount;
+
+        // Добавляем изображение и span в div.productDiv
+        productDiv.appendChild(productImage);
+        productDiv.appendChild(badgeSpan);
+
+        // Добавляем div.productDiv в контейнер .delivery__products
+        deliveryProductsContainer.appendChild(productDiv);
+    });
+}
+
+const immediatelyCheckbox = document.getElementById('immediately');
+const orderButton = document.querySelector('.total__order--button button');
+
+immediatelyCheckbox.addEventListener('change', function() {
+    if (immediatelyCheckbox.checked) {
+        orderButton.textContent = `Оплатить ${calculateTotalAmount().toLocaleString()} сом`;
+    } else {
+        orderButton.textContent = 'Заказать';
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const orderButton = document.querySelector(".total__order--button button");
+    orderButton.addEventListener("click", validateForm);
+});
+
+function validateForm(event) {
+    event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+    const name = document.getElementById("name").value;
+    const surname = document.getElementById("surname").value;
+    const email = document.getElementById("email").value;
+    const phoneNumber = document.getElementById("phone-number").value;
+    const INN = document.getElementById("INN").value;
+
+    const nameError = document.querySelector(".span--error-name");
+    const surnameError = document.querySelector(".span--error-surname");
+    const emailError = document.querySelector(".info-span--error");
+    const phoneError = document.querySelector(".info-error--phone");
+    const INNError = document.querySelector(".info-error--INN");
+    const infoSpan = document.querySelector(".info-span"); // Найти элемент с сообщением для таможенного оформления
+
+    nameError.style.display = name ? "none" : "block";
+    surnameError.style.display = surname ? "none" : "block";
+    emailError.style.display = email ? "none" : "block";
+    phoneError.style.display = /^\+\d{1} \d{3} \d{3}-\d{2}-\d{2}$/.test(phoneNumber) ? "none" : "block";
+    INNError.style.display = INN ? "none" : "block";
+
+    // Скрыть сообщение для таможенного оформления в случае ошибки в поле INN
+    infoSpan.style.display = INN ? "none" : "none"; // Установить стиль "none" для скрытия элемента
+
+    // Прокручиваем страницу к первому незаполненному полю
+    if (!name) {
+        document.getElementById("name").scrollIntoView();
+    } else if (!surname) {
+        document.getElementById("surname").scrollIntoView();
+    } else if (!email) {
+        document.getElementById("email").scrollIntoView();
+    } else if (!/^\+\d{1} \d{3} \d{3}-\d{2}-\d{2}$/.test(phoneNumber)) {
+        document.getElementById("phone-number").scrollIntoView();
+    } else if (!INN) {
+        document.getElementById("INN").scrollIntoView();
+    }
+}

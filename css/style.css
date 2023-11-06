@@ -1091,7 +1091,7 @@ h1{
 }
 
 
-.info-span, .info-span--error, .info-error--phone, .info-error--INN {
+.info-span, .info-span--error, .info-error--phone, .info-error--INN,.span--error-name, .span--error-surname {
     display: block;
     font-size: 12px;
     font-weight: 400;
@@ -1105,7 +1105,7 @@ h1{
     bottom: -18px; /* Расстояние между инпутом и span */
 }
 
-.info-span--error, .info-error--phone ,.info-error--INN{
+.info-span--error, .info-error--phone ,.info-error--INN,.span--error-name, .span--error-surname{
     color: red;
     display: none;
 }

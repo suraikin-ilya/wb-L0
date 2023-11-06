@@ -49,24 +49,13 @@ phoneNumberInput.addEventListener('input', function(event) {
     }
 });
 
-phoneNumberInput.addEventListener('blur', function(event) {
-    const inputValue = event.target.value.replace(/\D/g, '');
-    const formattedValue = formatPhoneNumber(inputValue);
-    if (inputValue.length > 0 && inputValue.length <= 30 && formattedValue) {
-        phoneNumberInput.value = formattedValue;
-        errorSpanPhone.style.display = 'none';
-    } else {
-        errorSpanPhone.style.display = 'block';
-    }
-});
-
 const INNInput = document.getElementById('INN');
 const infoSpan = document.querySelector('.info-span');
 const errorSpanINN = document.querySelector('.info-error--INN');
 
-INNInput.addEventListener('blur', function(event) {
+INNInput.addEventListener('input', function(event) {
     const inputValue = event.target.value.replace(/\D/g, ''); // Оставляем только цифры
-    if (inputValue.length === 14) {
+    if (inputValue.length > 0 && inputValue.length === 14) {
         infoSpan.style.display = 'block';
         errorSpanINN.style.display = 'none';
     } else {
@@ -74,3 +63,37 @@ INNInput.addEventListener('blur', function(event) {
         errorSpanINN.style.display = 'block';
     }
 });
+
+const nameInput = document.getElementById('name');
+const surnameInput = document.getElementById('surname');
+const errorSpanName = document.querySelector('.span--error-name');
+const errorSpanSurname = document.querySelector('.span--error-surname');
+
+function isValidName(name) {
+    // Проверяем, что имя состоит только из букв и тире/дефиса, и не пустое
+    return /^[А-Яа-яA-Za-z\-]+$/.test(name);
+}
+
+function isValidSurname(surname) {
+    // Проверяем, что фамилия состоит только из букв и тире/дефиса, и не пустая
+    return /^[А-Яа-яA-Za-z\-]+$/.test(surname);
+}
+
+nameInput.addEventListener('input', function(event) {
+    const nameValue = event.target.value.trim();
+    if (nameValue.length === 0 || !isValidName(nameValue)) {
+        errorSpanName.style.display = 'block';
+    } else {
+        errorSpanName.style.display = 'none';
+    }
+});
+
+surnameInput.addEventListener('input', function(event) {
+    const surnameValue = event.target.value.trim();
+    if (surnameValue.length === 0 || !isValidSurname(surnameValue)) {
+        errorSpanSurname.style.display = 'block';
+    } else {
+        errorSpanSurname.style.display = 'none';
+    }
+});
+
